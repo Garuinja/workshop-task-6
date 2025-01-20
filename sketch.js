@@ -26,7 +26,7 @@ function newLine(){
   response = '';
   for(x = 0; x < words.length; x++){
     let rhymes = RiTa.rhymesSync(words[x]);
-    let alliterations = RiTa.alliterations(words[x]);
+    // let alliterations = RiTa.alliterations(words[x]);
     console.log(alliterations);
     if (rhymes.length === 0){
       if(RiTa.isNoun(words[x])){
@@ -40,11 +40,14 @@ function newLine(){
       }
     } else{
       let changedWord = random(rhymes);
-      response += changedWord;
+      if(x % 2 == 0){
+        response += RiTa.pluralize(changedWord);
+      }else{
+        response += changedWord;
+      }
     }
     response += ' ';
   }
-
   poem.push(response);
 }
 function writePoem(){
